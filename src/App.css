@@ -1,38 +1,228 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+    background-image: linear-gradient(-225deg, #1d0f2c 0%, #604ba7 53%, #131025 100%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo{
+    text-align: center;
+    color:#7b69b8;
+    text-decoration: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1{
+    margin-top: 3rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 5px #0e0a1a;
 }
 
-.App-link {
-  color: #61dafb;
+span{
+    font-size: 1.3rem;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 3px 3px 5px #0e0a1a;
+    
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* CREATE CARD COMPONENT */
+.form-card-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 10rem;
+}
+
+.form-wrapper{
+    margin: 0 2rem;
+}
+
+.live-card{
+    width: 25rem;
+    height: 15rem;
+    border-radius: 10px;
+    margin: 1rem 2rem 0;
+    padding: 1rem;
+    background-image: linear-gradient(-60deg, #ff58583b 0%, #f09819 100%);
+    transform:  perspective(800px) rotateY(-20deg) rotateX(10deg) ;
+    color: #fff;
+    box-shadow: 10px 30px 15px #13102577, inset -1px -1px 1px #ffffffa2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.live-card-input{
+    width: 20rem;
+    background-color: transparent;
+    color: #f0ca96;
+    font-size: 1.4rem;
+    font-family: 'Monda', sans-serif;
+    text-shadow: 1px 1px #dddddd, 2px 2px 2px rgba(0, 0, 0, 0.294);
+    letter-spacing: .2rem;
+}
+
+.live-card-input::placeholder{
+    color: #f0ca96;;
+    font-family: 'Monda', sans-serif;
+    font-size: 1.6rem;
+}
+
+.live-card-input-name{
+    width: 13rem;
+    background-color: transparent;
+    color: #f0ca96;
+    font-size: 1rem;
+    font-family: 'Monda', sans-serif;
+    text-shadow: 1px 1px rgb(221, 221, 221), 2px 2px 2px rgba(0, 0, 0, 0.294);
+    padding: 0;
+    letter-spacing: .1rem;
+}
+
+.live-card-input-name::placeholder{
+    color: #f0ca96;
+    font-family: 'Monda', sans-serif;
+    font-size: .9rem;
+}
+
+.live-card-input-date{
+    width: 4.7rem;
+}
+
+.live-card-vendor{
+    width: 11rem;
+    text-transform: uppercase;
+    font-size: .9rem;
+}
+
+.name-date-container{
+    display: flex;
+}
+
+.card-images{
+    width: 100%;
+    padding-right: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+label{
+    color: #fff;
+}
+
+.label-text{
+    font-size: .5rem;
+}
+
+.label-form{
+    font-family: 'Monda', sans-serif;
+    text-transform: uppercase;
+    font-size: .8rem;
+    color: #c4bcdd;
+}
+
+.cardholder-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.name-space{
+    margin-right: 1rem;
+}
+
+.vendor-card{
+    width: 85%;
+    display: flex;
+}
+
+input{
+    margin-bottom: .5rem;
+    padding: .5rem .7rem;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.308);
+    border: none;
+    outline: none;
+    color: #000;
+}
+
+.long-input{
+    width: 25rem;
+}
+
+.short-input-wrapper{
+    display: flex;
+}
+
+.short-input{
+    width: 12rem;
+    margin-right: 1rem;
+}
+
+.options{
+    width: 25rem;
+    margin-bottom: 1rem;
+    padding: .5rem .7rem;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.308);
+    outline: none;
+}
+
+.add-btn{
+    width: 25rem;
+    padding: .7rem;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background-color: #131025;
+    color: #d1cbe2;
+    border: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.335);
+    outline: none;
+}
+
+.btn-disabled{
+    background-color: #bdbdbd;
+    color: #dfdfdf;
+}
+
+
+/* CARD COMPONENT*/
+
+.card-container{
+    height: 100vh;
+}
+
+.card-wrapper{
+    width: 25rem;
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: 5px;
+}
+
+.card-wrapper:nth-child(1){
+    background-color: aquamarine;
+}
+.card-wrapper:nth-child(2){
+    background-color: blueviolet;
+}
+.card-wrapper:nth-child(3){
+    background-color: rgb(43, 168, 226);
+}
+.card-wrapper:nth-child(4){
+    background-color: rgb(220, 43, 226);
+}
+
+.disabled{
+    color: chocolate;
 }

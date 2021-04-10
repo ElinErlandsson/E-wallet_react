@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { addCard } from '../Redux/cardSlice';
-import chip from '../bilder/card-chip.png';
-import blip from '../bilder/blip.png';
+import Card from './Card';
+import { motion } from 'framer-motion';
+
 
 export default function CreateCard() {
-
-    const cards = useSelector((state) => state.card.cards);
 
     const [cardNumber, setCardNumber] = useState("");
     const [name, setName] = useState("");
@@ -14,9 +14,8 @@ export default function CreateCard() {
     const [ccvNumber, setCcvNumber] = useState("");
     const [vendor, setVendor] = useState("");
 
-    const [disabled, setDisabled] = useState(false)
-
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const inputInfo = {
         cardNumber: cardNumber,
@@ -26,17 +25,13 @@ export default function CreateCard() {
         vendor: vendor
     }
 
-   
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Dispatch reducern funktionen som heter addContact och lägg in name och number staten.
         dispatch(addCard(inputInfo))
 
-        if(cards.length === 3){
-            setDisabled(true)
-        }
+        history.goBack();
+
         //Clear input
         setCardNumber("");
         setName("");
@@ -44,89 +39,56 @@ export default function CreateCard() {
         setCcvNumber("");
         setVendor("");
     }
-
-    /* const dateInput = (e) => {
-        let date = e.target.value.split("/");
-        let month = parseInt(date[0],10);
-        let year = parseInt(date[1],10);
-
-        if(isNaN(month) || isNaN(year)){
-            console.log("not valid");
-        }
-        else{
-            setDate(e.target.value)
-        }
-
-    } */
-   
     
+    // Only trigger digits and make a space every fourth number.
+    const handleCardNumber = (e) => {
+        setCardNumber(e.target.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim())
+    }
 
     return (
-        <div className="form-card-container">
+        <motion.div className="form-card-container" 
+                    initial={{ opacity:0 }} 
+                    animate={{ opacity:1 }} 
+                    exit={{ opacity:0 }} 
+                    transition={{ ease: "easeOut", duration: 2 }}>
+
             <div className="form-container">
-            <form className="form-wrapper" onSubmit={handleSubmit}>
+                <h2 className="create-card-title">Add a new bank card.</h2>
                 
-                <label className="label-form">Card number</label><br/>
-                <input className="long-input" type="text" maxLength="19" required value={cardNumber} onChange={(e) => setCardNumber(e.target.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim())}/><br/>
-                <label className="label-form">Cardholder name</label><br/>
-                <input className="long-input" type="text" required value={name} onChange={(e) => setName(e.target.value.toUpperCase())}/><br/>
+                <form className="form-wrapper" onSubmit={handleSubmit}>
+                    
+                    <label className="label-form">Card number</label><br/>
+                    <input className="long-input" type="text" minLength="19" maxLength="19" required value={cardNumber} onChange={(e) => handleCardNumber(e)}/><br/>
+                    <label className="label-form">Cardholder name</label><br/>
+                    <input className="long-input" type="text" required value={name} onChange={(e) => setName(e.target.value.replace(/[^\D]/g, ''))}/><br/>
                     <div className="short-input-wrapper">
                         <div>
                             <label className="label-form" >Valid thru</label><br/>
-                            <input className="short-input" type="text" maxLength="5" required value={date} onChange={(e) => {setDate(e.target.value)}}/><br/>
+                            <input className="short-input" type="text" minLength="5" maxLength="5" required value={date} onChange={(e) => {setDate(e.target.value.replace(/[^0-9]/g, '').replace(/(\d{2})(\d{1})/, "$1/$2"))}}/><br/>
                         </div>
                         <div>
                             <label className="label-form" >ccv</label><br/>
-                            <input className="short-input" type="text" maxLength="3" required value={ccvNumber} onChange={(e) => setCcvNumber(e.target.value.replace(/[^\d]/g, ''))}/><br/>
+                            <input className="short-input" type="text" minLength="3" maxLength="3" required value={ccvNumber} onChange={(e) => setCcvNumber(e.target.value.replace(/[^\d]/g, ''))}/><br/>
                         </div>
-                    
-                    </div>
-                
+                    </div>            
+                    <label className="label-form">Vendor</label><br/>
+                    <select className="options" required value={vendor} onChange={(e) => setVendor(e.target.value)}>
+                        <option value="">-- Choose an option --</option>
+                        <option value="Mastercard">Mastercard</option>
+                        <option value="Visa">Visa</option>
+                        <option value="American express">American express</option>
+                        <option value="Discover">Discover</option>
+                    </select><br/>
 
-                <label className="label-form">Vendor</label><br/>
-                <select className="options" required value={vendor} onChange={(e) => setVendor(e.target.value)}>
-                    <option value="">-- Choose an option --</option>
-                    <option value="Mastercard">Mastercard</option>
-                    <option value="Visa">Visa</option>
-                    <option value="American express">American express</option>
-                </select><br/>
-
-                     {!disabled? <button className="add-btn" type="submit">Add card</button>:<button className="add-btn btn-disabled" disabled type="submit">Add card</button>}
-                    
-            </form>
+                    <button className="add-btn" type="submit">Add card</button>                 
+                </form>
             </div>
             
-
-            <div className="live-card">
-                <div className="vendor-card">
-                <input className="live-card-input-name live-card-vendor" type="text" disabled placeholder="VENDOR" value={vendor}/>
-                </div>
-                
-<div className="card-images">
-<img width="100px" src={chip} alt=""/>
-                <img height="30px" src={blip} alt=""/>
-</div>
-                
-
-                <input className="live-card-input" type="text" disabled placeholder="xxxx xxxx xxxx xxxx" value={cardNumber}/>
-                <div className="name-date-container">
-                <div className="cardholder-wrapper name-space">
-                <label className="label-text">CARDHOLDER NAME</label>
-                <input className="live-card-input-name" type="text" disabled placeholder="FIRSTNAME LASTNAME" value={name}/>
-                </div>
-                <div className="cardholder-wrapper">
-                <label className="label-text">VALID THRU</label>
-                <input className="live-card-input-date live-card-input-name" type="text" disabled placeholder="MM/YY" value={date}/>
-                </div>
-                </div>
-                
-                
-                
-                
+            <div className="live-card-wrapper">
+                <Card {...inputInfo}/>   
             </div>
             
-
             
-        </div>
+        </motion.div>
     )
 }

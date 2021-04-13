@@ -3,7 +3,9 @@ import chip from '../bilder/card-chip.png';
 import blip from '../bilder/blip.png';
 import { useDispatch } from "react-redux";
 import { changeActive } from '../Redux/cardSlice';
-
+import { RiMastercardFill, RiVisaFill } from "react-icons/ri";
+import { SiAmericanexpress } from "react-icons/si";
+import { FaCcDiscover } from "react-icons/fa";
 
 export default function Card(props) {
 
@@ -14,22 +16,29 @@ export default function Card(props) {
         dispatch(changeActive(props.cardNumber));
     };
 
+    let iconStyles = { color: "#dadada71", fontSize: "2rem", paddingRight: ".5rem"};
+
     return (
- 
+        
             <div className="card-container" onClick={handleActiveCard}  
                 style={
-                props.vendor === "Mastercard"
-                ? { background: "linear-gradient(-60deg, #ff58583b 0%, #f09819 100%)" }
-                : props.vendor === "Visa"
-                ? { background: "linear-gradient(-60deg, #2c3f613b 0%, #4c70c5 100%)" }
-                : props.vendor === "American express"
-                ? { background: "linear-gradient(-60deg, #4897723b 0%, #5cbe99 100%)" }
-                : props.vendor === "Discover"
-                ? { background: "linear-gradient(-60deg, #27272c3b 0%, #a7acbb 100%)" }
+                props.vendor === "Mastercard"?
+                 { background: "linear-gradient(-60deg, #ff58583b 0%, #f09819 100%)" }
+                : props.vendor === "Visa"?
+                 { background: "linear-gradient(-60deg, #2c3f613b 0%, #4c70c5 100%)" }
+                : props.vendor === "American express"?
+                 { background: "linear-gradient(-60deg, #4897723b 0%, #5cbe99 100%)" }
+                : props.vendor === "Discover"?
+                 { background: "linear-gradient(-60deg, #27272c3b 0%, #a7acbb 100%)" }
                 : null
             }>
             
                 <div className="vendor-card-wrapper">
+                    {props.vendor === "Mastercard"?(<RiMastercardFill style={iconStyles}/>)
+                    :props.vendor === "Visa"?(<RiVisaFill style={iconStyles}/>)
+                    :props.vendor === "American express"?(<SiAmericanexpress style={iconStyles}/>)
+                    :props.vendor === "Discover"?(<FaCcDiscover style={iconStyles}/>)
+                    :null}
                     <p className="card-input card-vendor">{props.vendor? props.vendor : "Vendor"}</p>  
                 </div>
                 
@@ -50,6 +59,6 @@ export default function Card(props) {
                         <p className="card-input">{props.month && props.year? `${props.month} / ${props.year}` : "MM/YY"}</p>
                     </div>
                 </div>
-            </div>          
+            </div>        
     )
 }

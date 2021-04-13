@@ -30,11 +30,11 @@ const cardSlice = createSlice({
     changeActive: (state, action) => {
       console.log("click")
       state.cards.map((card) => {
-        if (card.cardNumber === action.payload) {
-          card.active = true;
-        }
         if (card.active === true) {
           card.active = false;
+        }
+        if (card.cardNumber === action.payload) {
+          card.active = true;
         }
         return null;
       })
@@ -49,7 +49,7 @@ const cardSlice = createSlice({
       })
     }
   },
-  
+
 extraReducers: {
         [getUser.pending]: (state) => {
           state.status = "loading...";

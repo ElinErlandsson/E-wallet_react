@@ -138,7 +138,7 @@ input{
     margin: 4rem 2rem 0;
     padding: 1rem 2rem 2rem 3rem;
     transform:  perspective(800px) rotateY(-20deg) rotateX(10deg) ;
-    color: #fff;
+    color: #ffffff;
     box-shadow: 10px 30px 15px #13102577, inset -1px -1px 1px #ffffffa2;  
     background: linear-gradient(-60deg, #ff585800 0%, #f0ac1942 100%);
 }
@@ -153,9 +153,13 @@ input{
     text-transform: uppercase;
 }
 
+.vendor-card-wrapper{
+    display: flex;
+}
+
 .card-vendor{
-    margin-bottom: 2rem;
     font-size: 1.1rem;
+    margin-bottom: 1.5rem;
 }
 
 .card-images{

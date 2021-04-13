@@ -1,13 +1,16 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import  Card  from './Card';
+import { deleteCard } from '../Redux/cardSlice';
 
 export default function HomeWallet() {
 
     const cards = useSelector((state) => state.card.cards);
 
+    const dispatch = useDispatch();
+    
     
     return (
         <motion.div className="home-container" 
@@ -21,7 +24,7 @@ export default function HomeWallet() {
                     {cards.map((card, i) => {
                         if(card.active){
                             return(
-                            <div className="card-wrapper-active" key={i}>
+                            <div className="card-bg-circle-active" key={i}>
                                 <Card {...card}/>
                             </div>
                         )}
@@ -39,7 +42,9 @@ export default function HomeWallet() {
                     {cards.map((card, i) => {
                         if (!card.active){
                             return(
-                            <div className="card-wrapper-notActive" key={i} >
+                            <div className="card-wrapper-notActive" key={i}>  
+                            <div onClick = {() => dispatch(deleteCard(card.cardNumber))}>
+                            <i className="far fa-times-circle"></i></div>  
                                 <Card {...card}/>
                             </div>
                         )
@@ -48,7 +53,6 @@ export default function HomeWallet() {
                     })}
                 </div>
             </div>
-    
         </motion.div>
     )
 }

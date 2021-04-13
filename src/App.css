@@ -76,10 +76,26 @@ input{
 .short-input-wrapper{
     display: flex;
 }
+.ccv-input{
+    margin-left: 2.1rem;
+}
 
-.short-input{
-    width: 12rem;
+
+.form-date-input{
+    display: flex;
+}
+
+.input-date-wrapper{
     margin-right: 1rem;
+}
+
+.input-date{
+    width: 5rem;
+    padding: .5rem .7rem;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.308);
+    border: none;
+    outline: none;
 }
 
 .options{
@@ -115,51 +131,31 @@ input{
 /* ------------- CARD COMPONENT ------------- */
 
 .card-container{
+    position: relative;
     width: 25rem;
     height: 15rem;
     border-radius: 10px;
     margin: 4rem 2rem 0;
-    padding: 2rem 1rem;
+    padding: 1rem 2rem 2rem 3rem;
     transform:  perspective(800px) rotateY(-20deg) rotateX(10deg) ;
     color: #fff;
-    box-shadow: 10px 30px 15px #13102577, inset -1px -1px 1px #ffffffa2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    box-shadow: 10px 30px 15px #13102577, inset -1px -1px 1px #ffffffa2;  
     background: linear-gradient(-60deg, #ff585800 0%, #f0ac1942 100%);
 }
 
 .card-input{
-    width: 12rem;
-    background-color: transparent;
+    margin-bottom: 1rem;
     color: #f0ca96;
-    font-size: 1rem;
+    font-size: .9rem;
     font-family: 'Monda', sans-serif;
-    text-shadow: 1px 1px #dddddd, 2px 2px 2px rgba(0, 0, 0, 0.294);
-    padding: 0;
+    text-shadow: 1px 1px #dddddd, 2px 2px 2px rgba(0, 0, 0, 0.472);
     letter-spacing: .1rem;
     text-transform: uppercase;
 }
 
-.card-input::placeholder{
-    color: #f0ca96;
-    font-family: 'Monda', sans-serif;
-    font-size: .9rem;
-}
-
-.vendor-card-wrapper{
-    width: 85%;
-    display: flex;
-}
-
-.card-input-vendor{
-    width: 12rem;
-    text-transform: uppercase;
-    font-size: 1rem;
-}
-
-.card-input-vendor::placeholder{
-    font-size: 1rem;
+.card-vendor{
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
 }
 
 .card-images{
@@ -167,42 +163,31 @@ input{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .7rem 1rem;
+    margin-bottom: .8rem;
 }
 
 .card-input-number{
-    width: 19rem;
     font-size: 1.4rem;
-    letter-spacing: .2rem;
-}
-
-.card-input-number::placeholder{
-    font-size: 1.6rem;
+    letter-spacing: .2rem;  
 }
 
 .name-date-container{
     display: flex;
+    justify-content: space-between;
 }
 
-.cardholder-wrapper{
+.name-date-wrapper{
     display: flex;
     flex-direction: column;
 }
 
-.name-space{
-    margin-right: 1rem;
+.date-space{
+    padding-right: 1rem;
 }
 
 .label-text{
-    font-size: .5rem;
-}
-
-.card-input-name{
-    width: 14.5rem;
-}
-
-.card-input-date{
-    width: 4.7rem;
+    font-size: .6rem;
+    text-transform: uppercase;
 }
 
 /* ------------- WALLET COMPONENT ------------- */
@@ -218,7 +203,7 @@ input{
     display: flex;
 }
 
-.card-wrapper-active{
+.card-bg-circle-active{
     width: 25rem;
     height: 25rem;
     margin: 5rem 0rem 2rem 0;
@@ -265,3 +250,14 @@ input{
     width: 13rem;
     margin-left: 6rem;
 }
+
+.fa-times-circle{
+    position: absolute;
+    top: 73px;
+    right: 10px;
+    color: rgba(255, 255, 255, 0.575);
+    font-size: 1.2rem;
+    z-index: 5;
+    cursor: pointer;
+}
+

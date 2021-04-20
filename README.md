@@ -1,1 +1,2 @@
-#E-Wallet_react
+# E-Wallet_React
+School project 

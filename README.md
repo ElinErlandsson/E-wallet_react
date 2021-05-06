@@ -5,5 +5,5 @@ The task was to create a maximum of 4 credit cards, one that was always active t
 * [DEMO](https://creditcard-wallet.netlify.app/)
 
 
-## Home page
+### Home page:
 ![](src/bilder/creditcard.png)
